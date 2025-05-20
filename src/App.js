@@ -94,7 +94,7 @@ function Contact() {
             Have a question or want to work with us? Fill out our form and we’ll get back to you shortly.
           </p>
           <a
-            href="https://forms.office.com/r/abc123" // ← Replace with your actual MS Form link
+            href="https://forms.office.com/r/7xCTsk3pQH" // ← Replace with your actual MS Form link
             target="_blank"
             rel="noopener noreferrer"
             className="bg-dark-blue text-white px-8 py-4 rounded-lg hover:bg-light-blue transition duration-300"
