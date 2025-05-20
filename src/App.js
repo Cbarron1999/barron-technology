@@ -79,28 +79,28 @@ function Services() {
 }
 
 function Contact() {
-  const handleSubmit = () => {
-    alert('Message sent!');
-  };
-
   return (
-    <section id="contact" className="py-20">
+    <section id="contact" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4 max-w-5xl">
         <h2 className="text-3xl font-bold text-dark-blue text-center mb-8">Contact Us</h2>
-        <div className="max-w-lg mx-auto">
-          <div className="mb-4">
-            <label htmlFor="name" className="block text-gray-700">Name</label>
-            <input type="text" id="name" className="w-full p-3 border rounded-lg" placeholder="Your Name" />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-gray-700">Email</label>
-            <input type="email" id="email" className="w-full p-3 border rounded-lg" placeholder="Your Email" />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="message" className="block text-gray-700">Message</label>
-            <textarea id="message" className="w-full p-3 border rounded-lg" rows="5" placeholder="Your Message"></textarea>
-          </div>
-          <button onClick={handleSubmit} className="bg-dark-blue text-white px-6 py-3 rounded-lg hover:bg-light-blue w-full">Send Message</button>
+        <div className="text-center text-lg text-gray-700 mb-6">
+          <p className="mb-2">
+            📧 Email: <a href="mailto:sales@barrontechnology.com" className="text-light-blue hover:underline">sales@barrontechnology.com</a>
+          </p>
+          <p className="mb-6">
+            📞 Phone: <a href="tel:8064019271" className="text-light-blue hover:underline">(806) 401-9271</a>
+          </p>
+          <p className="mb-6">
+            Have a question or want to work with us? Fill out our form and we’ll get back to you shortly.
+          </p>
+          <a
+            href="https://forms.office.com/r/abc123" // ← Replace with your actual MS Form link
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-dark-blue text-white px-8 py-4 rounded-lg hover:bg-light-blue transition duration-300"
+          >
+            Fill Out Our Contact Form
+          </a>
         </div>
       </div>
     </section>
@@ -111,7 +111,7 @@ function Footer() {
   return (
     <footer className="bg-dark-blue text-white py-6">
       <div className="container mx-auto px-4 max-w-5xl text-center">
-        <p>© 2025 Barron Technology. All rights reserved.</p>
+        <p>© 2025 Barron Technology LLC. All rights reserved.</p>
         <p className="mt-2">Willis, Texas</p>
       </div>
     </footer>
