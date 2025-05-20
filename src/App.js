@@ -58,7 +58,7 @@ function Services() {
     { title: "Cloud Consulting", description: "Optimize your operations with scalable cloud solutions and expert guidance." },
     { title: "Custom Software", description: "Tailored software implementation and integration to meet your unique needs." },
     { title: "Monitoring & Dashboards", description: "Real-time insights with custom monitoring and dashboard solutions." },
-    { title: "Business Consulting", description: "Strategic guidance to align technology with your business goals." },
+    { title: "IT & Business Consulting", description: "Strategic guidance to align technology with your business goals." },
   ];
 
   return (
