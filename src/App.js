@@ -1,28 +1,36 @@
 import React from 'react';
 import './App.css';
+import InfoTicker from './InfoTicker';
+import { useState } from 'react';
 import SmoothScroll from './SmoothScroll';
 
 function Nav() {
   return (
-    <nav className="bg-white dark-blue p-4 sticky top-0 shadow-md">
-      <div className="container mx-auto flex justify-between items-center max-w-5xl">
-        <a href="#" className="flex items-center">
-          <img src="/logo.png" alt="Barron Technology Logo" className="h-32 w-32 object-contain align-middle" />
-        </a>
-        <ul className="flex space-x-6">
+    <nav className="bg-white dark-blue sticky top-0 shadow-md z-50">
+      {/* Navigation Bar */}
+      <div className="p-2 container mx-auto px-4 flex justify-between items-center max-w-8xl">
+
+        <div className="flex items-center space-x-4">
+          <img src="/logo.png" alt="Barron Icon" className="h-50 w-40 object-contain" />
+        </div>
+
+        <ul className="flex space-x-6 text-xl font-semibold">
           <li><a href="#home" className="hover:text-light-blue">Home</a></li>
           <li><a href="#about" className="hover:text-light-blue">About</a></li>
           <li><a href="#services" className="hover:text-light-blue">Services</a></li>
           <li><a href="#contact" className="hover:text-light-blue">Contact</a></li>
         </ul>
       </div>
+
+      {/* Embedded InfoTicker */}
+      <InfoTicker />
     </nav>
   );
 }
 
 function Hero() {
   return (
-    <section id="home" className="bg-gray-100 py-20 text-center">
+    <section id="home" className="bg-gray-100 py-20 text-center scroll-mt-32">
       <div className="container mx-auto px-4 max-w-5xl">
         <h1 className="text-4xl md:text-5xl font-bold text-dark-blue mb-4">Empowering Your Business with Technology</h1>
         <p className="text-lg md:text-xl mb-6">Barron Technology delivers innovative IT and consulting solutions to drive your success!</p>
@@ -34,7 +42,7 @@ function Hero() {
 
 function About() {
   return (
-    <section id="about" className="py-20 bg-white">
+    <section id="about" className="py-20 bg-white scroll-mt-32">
       <div className="container mx-auto px-4 max-w-5xl">
         <h2 className="text-3xl font-bold text-dark-blue text-center mb-8">About Barron Technology</h2>
         <p className="text-lg text-gray-700 max-w-3xl mx-auto text-center mb-6">
@@ -52,24 +60,61 @@ function About() {
 }
 
 function Services() {
+  const [activeIndex, setActiveIndex] = useState(null);
+
   const services = [
-    { title: "Managed IT Services", description: "Comprehensive IT support to ensure your systems run smoothly and securely." },
-    { title: "Cybersecurity Solutions", description: "Protect your business with advanced threat detection and prevention strategies." },
-    { title: "Cloud Consulting", description: "Optimize your operations with scalable cloud solutions and expert guidance." },
-    { title: "Custom Software", description: "Tailored software implementation and integration to meet your unique needs." },
-    { title: "Monitoring & Dashboards", description: "Real-time insights with custom monitoring and dashboard solutions." },
-    { title: "IT & Business Consulting", description: "Strategic guidance to align technology with your business goals." },
+    {
+      title: "Managed IT Services",
+      short: "Comprehensive IT support to keep your systems running smoothly.",
+      full: "We offer 24/7 helpdesk, proactive monitoring, patching, and remote support for all your business devices and infrastructure."
+    },
+    {
+      title: "Cybersecurity Solutions",
+      short: "Protect your business with advanced security strategies.",
+      full: "Includes endpoint protection, threat detection, EDR, firewall management, and phishing simulations."
+    },
+    {
+      title: "Cloud Consulting",
+      short: "Optimize your business operations with expert cloud guidance.",
+      full: "We help migrate to, manage, and optimize Microsoft 365, Azure, AWS, and Google Cloud platforms."
+    },
+    {
+      title: "Custom Software",
+      short: "Tailored solutions to fit your unique workflow.",
+      full: "From internal tools to customer-facing apps, we design, develop, and integrate software to streamline operations."
+    },
+    {
+      title: "Monitoring & Dashboards",
+      short: "Real-time visibility into IT health and performance.",
+      full: "Includes network, device, and cloud service dashboards tailored to your key metrics and SLAs."
+    },
+    {
+      title: "Business Consulting",
+      short: "Align your IT investments with business strategy.",
+      full: "We provide strategic technology consulting, IT planning, and cost optimization for growing companies."
+    },
   ];
 
   return (
-    <section id="services" className="bg-gray-100 py-20">
+    <section id="services" className="bg-gray-100 py-20 scroll-mt-32">
       <div className="container mx-auto px-4 max-w-5xl">
         <h2 className="text-3xl font-bold text-dark-blue text-center mb-8">Our Services</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {services.map((service, index) => (
-            <div key={index} className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold text-dark-blue mb-4">{service.title}</h3>
-              <p className="text-gray-600">{service.description}</p>
+            <div
+                key={index}
+                onClick={() => setActiveIndex(activeIndex === index ? null : index)}
+                className="cursor-pointer bg-white p-6 rounded-lg shadow-md hover:shadow-lg hover:border-l-4 hover:border-light-blue transition-all duration-300"
+              >
+              <h3 className="text-xl font-semibold text-dark-blue mb-2 hover:text-light-blue transition-colors duration-200">
+                {service.title}
+              </h3>
+              <p className="text-gray-600">
+                {activeIndex === index ? service.full : service.short}
+              </p>
+              <p className="text-sm text-light-blue mt-2">
+                {activeIndex === index ? 'Click to collapse ▲' : 'Click to learn more ▼'}
+              </p>
             </div>
           ))}
         </div>
@@ -80,9 +125,10 @@ function Services() {
 
 function Contact() {
   return (
-    <section id="contact" className="py-20 bg-gray-50">
+    <section id="contact" className="py-20 bg-gray-50 scroll-mt-32">
       <div className="container mx-auto px-4 max-w-5xl">
         <h2 className="text-3xl font-bold text-dark-blue text-center mb-8">Contact Us</h2>
+
         <div className="text-center text-lg text-gray-700 mb-6">
           <p className="mb-2">
             📧 Email: <a href="mailto:sales@barrontechnology.com" className="text-light-blue hover:underline">sales@barrontechnology.com</a>
@@ -90,17 +136,21 @@ function Contact() {
           <p className="mb-6">
             📞 Phone: <a href="tel:8064019271" className="text-light-blue hover:underline">(806) 401-9271</a>
           </p>
-          <p className="mb-6">
-            Have a question or want to work with us? Fill out our form and we’ll get back to you shortly.
-          </p>
-          <a
-            href="https://forms.office.com/r/7xCTsk3pQH" // ← Replace with your actual MS Form link
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-dark-blue text-white px-8 py-4 rounded-lg hover:bg-light-blue transition duration-300"
-          >
-            Fill Out Our Contact Form
-          </a>
+        </div>
+
+        {/* Embedded Microsoft Form */}
+        <div className="w-full flex justify-center">
+          <iframe
+            src="https://forms.office.com/Pages/ResponsePage.aspx?id=0nfeB-LR5k-YiK6_X83vj7fHBnq3I_hBr68xR9IdD55UNTNLQldGNkRGRDRGVUtUQUc3TTg3RjFERS4u&embed=true"
+            width="100%"
+            height="1200px"
+            frameBorder="0"
+            marginWidth="0"
+            marginHeight="0"
+            style={{ border: 'none', maxWidth: '100%', height: '1200px' }}
+            allowFullScreen
+            title="Barron Contact Form"
+          ></iframe>
         </div>
       </div>
     </section>
