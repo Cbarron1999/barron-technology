@@ -11,12 +11,9 @@ function InfoTicker() {
 
   return (
     <div className="bg-[#007bff] text-white py-3 overflow-hidden whitespace-nowrap text-base font-medium">
-      <div
-        className="animate-marquee-slow hover-pause inline-block min-w-[200%]"
-        style={{ willChange: 'transform' }}
-      >
+      <div className="animate-marquee-slow hover-pause inline-block min-w-[200%]">
         {facts.map((fact, index) => (
-          <span key={index} className="mx-6">{fact}</span>
+          <span key={index} className="mx-6 inline-block">{fact}</span>
         ))}
       </div>
     </div>
