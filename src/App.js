@@ -5,24 +5,61 @@ import { useState } from 'react';
 import SmoothScroll from './SmoothScroll';
 
 function Nav() {
-  return (
-    <nav className="bg-white dark-blue sticky top-0 shadow-md z-50">
-      {/* Navigation Bar */}
-      <div className="p-2 container mx-auto px-4 flex justify-between items-center max-w-8xl">
+  const [menuOpen, setMenuOpen] = useState(false);
 
-        <div className="flex items-center space-x-4">
-          <img src="/logo.png" alt="Barron Icon" className="h-50 w-40 object-contain" />
+  return (
+    <nav className="bg-white sticky top-0 shadow-md z-50">
+      {/* Main Nav */}
+      <div className="max-w-7xl w-full flex items-center justify-between px-4 sm:px-6 py-3 mx-auto">
+
+        {/* Logo */}
+        <div className="flex items-center">
+          <img src="/logo.png" alt="Barron Icon" className="h-12 sm:h-14 w-auto object-contain" />
         </div>
 
-        <ul className="flex space-x-6 text-xl font-semibold">
+        {/* Desktop Links */}
+        <ul className="hidden sm:flex space-x-6 text-lg font-semibold">
           <li><a href="#home" className="hover:text-light-blue">Home</a></li>
           <li><a href="#about" className="hover:text-light-blue">About</a></li>
           <li><a href="#services" className="hover:text-light-blue">Services</a></li>
           <li><a href="#contact" className="hover:text-light-blue">Contact</a></li>
         </ul>
+
+        {/* Hamburger */}
+        <div className="sm:hidden">
+          <button onClick={() => setMenuOpen(!menuOpen)} className="text-dark-blue focus:outline-none">
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              {menuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
+        </div>
       </div>
 
-      {/* Embedded InfoTicker */}
+      {/* Slide-in Mobile Menu */}
+      <div
+        className={`fixed top-0 right-0 h-full w-2/3 max-w-xs bg-white shadow-lg z-50 transform ${
+          menuOpen ? 'translate-x-0' : 'translate-x-full'
+        } transition-transform duration-300 sm:hidden`}
+      >
+        <div className="p-6 flex flex-col space-y-4 text-lg font-semibold">
+          <a href="#home" className="hover:text-light-blue" onClick={() => setMenuOpen(false)}>Home</a>
+          <a href="#about" className="hover:text-light-blue" onClick={() => setMenuOpen(false)}>About</a>
+          <a href="#services" className="hover:text-light-blue" onClick={() => setMenuOpen(false)}>Services</a>
+          <a href="#contact" className="hover:text-light-blue" onClick={() => setMenuOpen(false)}>Contact</a>
+        </div>
+      </div>
+
+      {/* Ticker */}
       <InfoTicker />
     </nav>
   );
